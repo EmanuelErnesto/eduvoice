@@ -24,7 +24,7 @@ export const Home: React.FC = () => {
         {/* Vector Image */}
         <div className="flex justify-center mb-8">
           <img
-            src="/assets/imagem-vetorial.jpeg"
+            src="assets/imagem-vetorial.jpeg"
             alt="EduVoice Interactive - Ilustração"
             className="max-w-md w-full rounded-2xl shadow-2xl border-4 border-blue-500/30"
           />
@@ -72,7 +72,7 @@ export const Home: React.FC = () => {
                   playsInline
                   className="w-full max-w-sm rounded-lg shadow-lg border-2 border-blue-500/30"
                 >
-                  <source src="/assets/animation.mp4" type="video/mp4" />
+                  <source src="assets/animation.mp4" type="video/mp4" />
                   Seu navegador não suporta vídeos em loop.
                 </video>
               </div>
@@ -123,9 +123,9 @@ export const Home: React.FC = () => {
               <video
                 controls
                 className="w-full h-full"
-                poster="/assets/video-thumbnail.jpg"
+                poster="assets/video-thumbnail.jpg"
               >
-                <source src="/assets/video.mp4" type="video/mp4" />
+                <source src="assets/video.mp4" type="video/mp4" />
                 Seu navegador não suporta a reprodução de vídeo.
               </video>
             </div>
@@ -154,7 +154,7 @@ export const Home: React.FC = () => {
                 </p>
               </div>
               <audio controls className="w-full max-w-md" preload="metadata">
-                <source src="/assets/intro.ogg" type="audio/ogg" />
+                <source src="assets/intro.ogg" type="audio/ogg" />
                 Seu navegador não suporta a reprodução de áudio.
               </audio>
             </div>

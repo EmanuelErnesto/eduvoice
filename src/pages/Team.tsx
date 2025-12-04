@@ -14,27 +14,27 @@ export const Team: React.FC = () => {
     {
       name: "Emanuel Ernesto",
       matricula: "01614951",
-      photo: "/assets/foto-emanuel.enc",
+      photo: "assets/foto-emanuel.enc",
     },
     {
       name: "Thiago Oliveira",
       matricula: "01089643",
-      photo: "/assets/foto-thiago.enc",
+      photo: "assets/foto-thiago.enc",
     },
     {
       name: "Wesley Ruan",
       matricula: "01555915",
-      photo: "/assets/foto-ruan.enc",
+      photo: "assets/foto-ruan.enc",
     },
     {
       name: "Guilherme de Luna",
       matricula: "01615925",
-      photo: "/assets/foto-guilherme.enc",
+      photo: "assets/foto-guilherme.enc",
     },
     {
       name: "Antônio Henrique",
       matricula: "01647043",
-      photo: "/assets/foto-antonio.enc",
+      photo: "assets/foto-antonio.enc",
     },
   ];
 

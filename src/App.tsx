@@ -15,7 +15,9 @@ try {
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      basename={import.meta.env.MODE === "production" ? "/eduvoice" : "/"}
+    >
       <div className="min-h-screen bg-slate-900 text-slate-100">
         <Header />
         <Routes>

@@ -24,7 +24,7 @@ const MultimediaBackground: React.FC = () => {
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
       {/* Background Image */}
       <img
-        src="/assets/background.png"
+        src="assets/background.png"
         alt="EduVoice Background"
         className="absolute top-0 left-0 w-full h-full object-cover animate-fade-in"
       />
