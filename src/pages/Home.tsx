@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PageTitle } from "@/components/ui/PageTitle";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -6,6 +6,19 @@ import { Card } from "@/components/ui/Card";
 import { TechCard } from "@/components/ui/TechCard";
 
 export const Home: React.FC = () => {
+  const animationVideoRef = useRef<HTMLVideoElement>(null);
+  const presentationVideoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    // Ensure animation video plays when component mounts
+    if (animationVideoRef.current) {
+      animationVideoRef.current.play().catch(() => {
+        // Ignore autoplay errors (browser policy)
+      });
+    }
+  }, []);
+
   const technologies = [
     { name: "React 19", desc: "Framework JavaScript moderno" },
     { name: "TypeScript", desc: "Tipagem estática" },
@@ -24,9 +37,11 @@ export const Home: React.FC = () => {
         {/* Vector Image */}
         <div className="flex justify-center mb-8">
           <img
+            key="hero-image"
             src="assets/imagem-vetorial.jpeg"
             alt="EduVoice Interactive - Ilustração"
             className="max-w-md w-full rounded-2xl shadow-2xl border-4 border-blue-500/30"
+            loading="eager"
           />
         </div>
 
@@ -66,10 +81,12 @@ export const Home: React.FC = () => {
               {/* Animation */}
               <div className="flex justify-center">
                 <video
-                  autoPlay
+                  ref={animationVideoRef}
+                  key="animation-video"
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   className="w-full max-w-sm rounded-lg shadow-lg border-2 border-blue-500/30"
                 >
                   <source src="assets/animation.mp4" type="video/mp4" />
@@ -121,7 +138,10 @@ export const Home: React.FC = () => {
           <Card className="p-4">
             <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden">
               <video
+                ref={presentationVideoRef}
+                key="presentation-video"
                 controls
+                preload="metadata"
                 className="w-full h-full"
                 poster="assets/video-thumbnail.jpg"
               >
@@ -153,7 +173,13 @@ export const Home: React.FC = () => {
                   Ouça a apresentação do projeto
                 </p>
               </div>
-              <audio controls className="w-full max-w-md" preload="metadata">
+              <audio
+                ref={audioRef}
+                key="intro-audio"
+                controls
+                preload="metadata"
+                className="w-full max-w-md"
+              >
                 <source src="assets/intro.ogg" type="audio/ogg" />
                 Seu navegador não suporta a reprodução de áudio.
               </audio>

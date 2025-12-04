@@ -46,9 +46,9 @@ export const Team: React.FC = () => {
         </PageTitle>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
+          {teamMembers.map((member) => (
             <TeamMemberCard
-              key={index}
+              key={member.matricula}
               name={member.name}
               matricula={member.matricula}
               photo={member.photo}

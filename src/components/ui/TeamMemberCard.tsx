@@ -42,6 +42,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
             alt={name}
             className="w-full h-full object-cover"
             onError={handleImageError}
+            loading="eager"
           />
         </div>
 
