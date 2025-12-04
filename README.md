@@ -127,6 +127,7 @@ npm run test:ui
 
 ### Solução de Problemas
 
+
 **Erro: "API Key is missing"**
 
 - Verifique se o arquivo `.env` existe na raiz do projeto
