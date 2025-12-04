@@ -1,5 +1,5 @@
-import Speech from 'speak-tts';
-import { EventEmitter } from '../utils/EventEmitter';
+import Speech from "speak-tts";
+import { EventEmitter } from "../utils/EventEmitter";
 
 class TTSService extends EventEmitter {
   private speech: any;
@@ -18,32 +18,35 @@ class TTSService extends EventEmitter {
 
   public init(): Promise<void> {
     if (this.initialized) return Promise.resolve();
-    
+
     if (this.initPromise) return this.initPromise;
 
     if (!this.speech) {
-        this.initPromise = Promise.resolve();
-        return this.initPromise;
+      this.initPromise = Promise.resolve();
+      return this.initPromise;
     }
 
-    this.initPromise = this.speech.init({
-      volume: this.currentVolume,
-      lang: 'pt-BR',
-      rate: 1.1,
-      pitch: 1,
-      splitSentences: false
-    }).then((data: any) => {
-      this.initialized = true;
-    }).catch((error: any) => {
-      this.initialized = false;
-    });
+    this.initPromise = this.speech
+      .init({
+        volume: this.currentVolume,
+        lang: "pt-BR",
+        rate: 1.1,
+        pitch: 1,
+        splitSentences: false,
+      })
+      .then((data: any) => {
+        this.initialized = true;
+      })
+      .catch((error: any) => {
+        this.initialized = false;
+      });
 
     return this.initPromise!;
   }
 
   public resume(): void {
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.resume();
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.resume();
     }
   }
 
@@ -58,24 +61,24 @@ class TTSService extends EventEmitter {
     if (!this.speech) return;
 
     if (!this.initialized) {
-        await this.init();
-        if (!this.initialized) return;
+      await this.init();
+      if (!this.initialized) return;
     }
 
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
     }
 
     this.speech.setVolume(this.currentVolume);
 
     return new Promise((resolve) => {
       let resolved = false;
-      const timeoutDuration = (text.length * 100) + 5000;
-      
+      const timeoutDuration = text.length * 100 + 5000;
+
       const handleEnd = () => {
         if (resolved) return;
         resolved = true;
-        this.emit('TTS_ENDED');
+        this.emit("TTS_ENDED");
         resolve();
       };
 
@@ -92,14 +95,21 @@ class TTSService extends EventEmitter {
           return;
         }
 
-        this.speech.speak({
-          text,
-          queue: false,
-          listeners: {
-            onend: safeHandleEnd,
-            onerror: safeHandleEnd
-          }
-        }).catch(safeHandleEnd);
+        this.emit("TTS_STARTED");
+
+        this.speech
+          .speak({
+            text,
+            queue: false,
+            listeners: {
+              onstart: () => {
+                this.emit("TTS_STARTED");
+              },
+              onend: safeHandleEnd,
+              onerror: safeHandleEnd,
+            },
+          })
+          .catch(safeHandleEnd);
       } catch (error) {
         safeHandleEnd();
       }
@@ -110,11 +120,10 @@ class TTSService extends EventEmitter {
     if (!this.speech) return;
     try {
       this.speech.cancel();
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-          window.speechSynthesis.cancel();
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 }
 
