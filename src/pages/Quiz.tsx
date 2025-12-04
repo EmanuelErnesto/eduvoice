@@ -157,6 +157,13 @@ const QuizContent: React.FC = () => {
     };
 
     startAudio();
+
+    // Cleanup: Stop music when leaving the Quiz page
+    return () => {
+      console.log("[Quiz] Saindo da página, parando música...");
+      audioService.stopMusic();
+      ttsService.cancel();
+    };
   }, [
     config.activeTrack,
     config.isMuted,
