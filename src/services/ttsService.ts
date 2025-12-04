@@ -51,9 +51,19 @@ class TTSService extends EventEmitter {
   }
 
   public setVolume(volume: number) {
+    console.log("[TTSService] setVolume chamado:", volume);
     this.currentVolume = volume;
     if (this.speech && this.initialized) {
-      this.speech.setVolume(volume);
+      try {
+        this.speech.setVolume(volume);
+        console.log("[TTSService] Volume do speech atualizado para:", volume);
+      } catch (e) {
+        console.error("[TTSService] Erro ao definir volume:", e);
+      }
+    } else {
+      console.log(
+        "[TTSService] Speech não inicializado ainda, volume será aplicado na próxima fala"
+      );
     }
   }
 
@@ -69,6 +79,11 @@ class TTSService extends EventEmitter {
       window.speechSynthesis.cancel();
     }
 
+    // Always set volume before speaking to ensure correct level
+    console.log(
+      "[TTSService] Configurando volume antes de falar:",
+      this.currentVolume
+    );
     this.speech.setVolume(this.currentVolume);
 
     return new Promise((resolve) => {

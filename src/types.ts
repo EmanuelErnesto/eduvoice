@@ -1,16 +1,15 @@
-
 export const GameStatus = {
-  INTRO: 'INTRO',
-  PLAYING: 'PLAYING',
-  FEEDBACK: 'FEEDBACK',
-  FINISHED: 'FINISHED',
+  INTRO: "INTRO",
+  PLAYING: "PLAYING",
+  FEEDBACK: "FEEDBACK",
+  FINISHED: "FINISHED",
 } as const;
 
-export type GameStatus = typeof GameStatus[keyof typeof GameStatus];
+export type GameStatus = (typeof GameStatus)[keyof typeof GameStatus];
 
-export type SoundTrack = 'zen' | 'cosmos' | 'focus' | 'upload';
+export type SoundTrack = "voz-violao" | "violao-background" | "upload";
 
-export type Difficulty = 'easy' | 'medium' | 'hard';
+export type Difficulty = "easy" | "medium" | "hard";
 
 export interface Question {
   id: number;
