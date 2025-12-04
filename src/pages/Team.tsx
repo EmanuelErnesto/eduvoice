@@ -39,13 +39,13 @@ export const Team: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-12 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <div className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl">
         <PageTitle subtitle="Conheça as pessoas por trás do EduVoice Interactive">
           Nossa Equipe
         </PageTitle>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {teamMembers.map((member) => (
             <TeamMemberCard
               key={member.matricula}
@@ -58,7 +58,7 @@ export const Team: React.FC = () => {
 
         <Card className="mt-16 text-center">
           <h2 className="text-2xl font-bold text-blue-400 mb-4">
-            Faça Parte da Equipe
+            Faça Sua Contribuição
           </h2>
           <p className="text-slate-300 mb-6">
             Este é um projeto de código aberto. Contribuições são bem-vindas!

@@ -35,9 +35,9 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-xl p-6 backdrop-blur-sm border border-slate-700 hover:border-blue-500 transition-all hover:transform hover:scale-105">
+    <div className="bg-slate-800/50 rounded-xl p-4 sm:p-6 backdrop-blur-sm border border-slate-700 hover:border-blue-500 transition-all hover:transform hover:scale-105">
       <div className="flex flex-col items-center text-center">
-        <div className="w-40 h-40 rounded-full mb-4 overflow-hidden border-4 border-blue-500/30">
+        <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full mb-3 sm:mb-4 overflow-hidden border-4 border-blue-500/30">
           <img
             src={getAssetPath(photo)}
             alt={name}
@@ -47,9 +47,13 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
           />
         </div>
 
-        <h3 className="text-2xl font-bold text-blue-400 mb-2">{name}</h3>
+        <h3 className="text-xl sm:text-2xl font-bold text-blue-400 mb-2">
+          {name}
+        </h3>
 
-        <p className="text-lg text-purple-400 font-mono">Mat. {matricula}</p>
+        <p className="text-base sm:text-lg text-purple-400 font-mono">
+          Mat. {matricula}
+        </p>
       </div>
     </div>
   );

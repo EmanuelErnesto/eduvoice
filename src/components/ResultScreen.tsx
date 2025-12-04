@@ -27,17 +27,17 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({
   return (
     <>
       {isHappy && <Confetti />}
-      <div className="bg-slate-800/80 backdrop-blur p-6 md:p-8 rounded-2xl border border-slate-700 text-center max-w-lg w-full animate-scale-in mx-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+      <div className="bg-slate-800/80 backdrop-blur p-4 sm:p-6 md:p-8 rounded-2xl border border-slate-700 text-center max-w-lg w-full animate-scale-in mx-3 sm:mx-4">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">
           Quiz Finalizado!
         </h2>
 
         <Mascot isHappy={isHappy} />
 
-        <div className="text-5xl md:text-6xl font-bold text-indigo-400 mb-2">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-indigo-400 mb-2">
           {score} / {totalQuestions}
         </div>
-        <div className="text-2xl font-semibold text-cyan-400 mb-6">
+        <div className="text-xl sm:text-2xl font-semibold text-cyan-400 mb-4 sm:mb-6">
           {percentage}%
         </div>
 

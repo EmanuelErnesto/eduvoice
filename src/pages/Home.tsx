@@ -27,30 +27,30 @@ export const Home: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-12 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <div className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl">
         <PageTitle>EduVoice Interactive</PageTitle>
 
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6 sm:mb-8">
           <img
             key="hero-image"
             src={getAssetPath("assets/imagem-vetorial.jpeg")}
             alt="EduVoice Interactive - Ilustração"
-            className="max-w-md w-full rounded-2xl shadow-2xl border-4 border-blue-500/30"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-2xl shadow-2xl border-4 border-blue-500/30"
             loading="eager"
           />
         </div>
 
-        <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto text-center">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-6 sm:mb-8 max-w-3xl mx-auto text-center px-2">
           Uma plataforma educacional imersiva que utiliza Inteligência
           Artificial para criar quizzes dinâmicos sobre qualquer assunto,
           narrados por voz neural sintética.
         </p>
 
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center mb-12 sm:mb-16">
           <Link
             to="/quiz"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white text-base sm:text-lg font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto justify-center max-w-xs sm:max-w-none"
           >
             Começar Quiz
             <svg
@@ -69,10 +69,10 @@ export const Home: React.FC = () => {
           </Link>
         </div>
 
-        <section className="mb-16">
+        <section className="mb-12 sm:mb-16">
           <SectionTitle>Sobre o Projeto</SectionTitle>
           <Card>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div className="flex justify-center">
                 <video
                   ref={animationVideoRef}
@@ -81,7 +81,7 @@ export const Home: React.FC = () => {
                   muted
                   playsInline
                   preload="auto"
-                  className="w-full max-w-sm rounded-lg shadow-lg border-2 border-blue-500/30"
+                  className="w-full max-w-xs sm:max-w-sm rounded-lg shadow-lg border-2 border-blue-500/30"
                 >
                   <source
                     src={getAssetPath("assets/animation.mp4")}
@@ -188,7 +188,7 @@ export const Home: React.FC = () => {
 
         <section>
           <SectionTitle>Tecnologias Utilizadas</SectionTitle>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {technologies.map((tech) => (
               <TechCard
                 key={tech.name}
