@@ -1,0 +1,5 @@
+{
+  "name": "EduVoice Interactive",
+  "description": "Um sistema educacional multimídia interativo utilizando Voz Sintetizada (Gemini TTS) e trilhas sonoras adaptativas para uma experiência de aprendizado imersiva.",
+  "requestFramePermissions": []
+}
