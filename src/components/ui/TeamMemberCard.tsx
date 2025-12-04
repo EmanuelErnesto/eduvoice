@@ -1,4 +1,5 @@
 import React from "react";
+import { getAssetPath } from "@/utils/assets";
 
 interface TeamMemberCardProps {
   name: string;
@@ -38,7 +39,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
       <div className="flex flex-col items-center text-center">
         <div className="w-40 h-40 rounded-full mb-4 overflow-hidden border-4 border-blue-500/30">
           <img
-            src={photo}
+            src={getAssetPath(photo)}
             alt={name}
             className="w-full h-full object-cover"
             onError={handleImageError}

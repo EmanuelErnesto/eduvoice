@@ -6,7 +6,6 @@ import { Quiz } from "./pages/Quiz";
 import { Team } from "./pages/Team";
 import { validateEnv } from "./env";
 
-// Validate environment variables on app start
 try {
   validateEnv();
 } catch (error) {

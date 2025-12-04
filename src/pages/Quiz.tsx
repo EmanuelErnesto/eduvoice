@@ -8,6 +8,7 @@ import { AudioProvider } from "@/contexts/AudioContext";
 import { useGameLogic } from "@/hooks/useGameLogic";
 import { GameStatus } from "@/types";
 import { ttsService } from "@/services/ttsService";
+import { getAssetPath } from "@/utils/assets";
 
 export const Quiz: React.FC = () => {
   return (
@@ -22,17 +23,14 @@ export const Quiz: React.FC = () => {
 const MultimediaBackground: React.FC = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-      {/* Background Image */}
       <img
         key="quiz-background"
-        src="assets/background.png"
+        src={getAssetPath("assets/background.png")}
         alt="EduVoice Background"
         className="absolute top-0 left-0 w-full h-full object-cover animate-fade-in"
         loading="eager"
       />
-      {/* Overlay Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-900/90"></div>
-      {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
     </div>
   );

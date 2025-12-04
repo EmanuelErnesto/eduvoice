@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "./ui/NavLink";
+import { getAssetPath } from "@/utils/assets";
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -17,7 +18,7 @@ export const Header: React.FC = () => {
           className="flex items-center gap-2 text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors"
         >
           <img
-            src="assets/logo.svg"
+            src={getAssetPath("assets/logo.svg")}
             alt="EduVoice Logo"
             className="w-8 h-8"
             loading="eager"

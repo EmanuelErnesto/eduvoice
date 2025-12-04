@@ -10,8 +10,6 @@ import { ERROR_CODES } from "../constants";
 const getAI = () => {
   if (!env.API_KEY) {
     console.warn("API Key is missing.");
-    // Retorna uma instância dummy ou lança erro controlado se preferir,
-    // mas aqui deixamos o SDK validar na chamada ou a validação de env.ts capturar.
   }
   return new GoogleGenerativeAI(env.API_KEY);
 };

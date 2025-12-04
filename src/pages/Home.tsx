@@ -4,6 +4,7 @@ import { PageTitle } from "@/components/ui/PageTitle";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Card } from "@/components/ui/Card";
 import { TechCard } from "@/components/ui/TechCard";
+import { getAssetPath } from "@/utils/assets";
 
 export const Home: React.FC = () => {
   const animationVideoRef = useRef<HTMLVideoElement>(null);
@@ -11,11 +12,8 @@ export const Home: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Ensure animation video plays when component mounts
     if (animationVideoRef.current) {
-      animationVideoRef.current.play().catch(() => {
-        // Ignore autoplay errors (browser policy)
-      });
+      animationVideoRef.current.play().catch(() => {});
     }
   }, []);
 
@@ -31,14 +29,12 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen pt-20 pb-12 px-4">
       <div className="container mx-auto max-w-6xl">
-        {/* Hero Section */}
         <PageTitle>EduVoice Interactive</PageTitle>
 
-        {/* Vector Image */}
         <div className="flex justify-center mb-8">
           <img
             key="hero-image"
-            src="assets/imagem-vetorial.jpeg"
+            src={getAssetPath("assets/imagem-vetorial.jpeg")}
             alt="EduVoice Interactive - Ilustração"
             className="max-w-md w-full rounded-2xl shadow-2xl border-4 border-blue-500/30"
             loading="eager"
@@ -73,12 +69,10 @@ export const Home: React.FC = () => {
           </Link>
         </div>
 
-        {/* About Section */}
         <section className="mb-16">
           <SectionTitle>Sobre o Projeto</SectionTitle>
           <Card>
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Animation */}
               <div className="flex justify-center">
                 <video
                   ref={animationVideoRef}
@@ -89,12 +83,14 @@ export const Home: React.FC = () => {
                   preload="auto"
                   className="w-full max-w-sm rounded-lg shadow-lg border-2 border-blue-500/30"
                 >
-                  <source src="assets/animation.mp4" type="video/mp4" />
+                  <source
+                    src={getAssetPath("assets/animation.mp4")}
+                    type="video/mp4"
+                  />
                   Seu navegador não suporta vídeos em loop.
                 </video>
               </div>
 
-              {/* Text Content */}
               <div className="prose prose-invert max-w-none">
                 <p className="text-lg text-slate-300 leading-relaxed mb-4">
                   O EduVoice Interactive é uma plataforma inovadora que combina
@@ -132,7 +128,6 @@ export const Home: React.FC = () => {
           </Card>
         </section>
 
-        {/* Video Section */}
         <section className="mb-16">
           <SectionTitle>Vídeo de Apresentação</SectionTitle>
           <Card className="p-4">
@@ -143,16 +138,17 @@ export const Home: React.FC = () => {
                 controls
                 preload="metadata"
                 className="w-full h-full"
-                poster="assets/video-thumbnail.jpg"
               >
-                <source src="assets/video.mp4" type="video/mp4" />
+                <source
+                  src={getAssetPath("assets/video.mp4")}
+                  type="video/mp4"
+                />
                 Seu navegador não suporta a reprodução de vídeo.
               </video>
             </div>
           </Card>
         </section>
 
-        {/* Audio Section */}
         <section className="mb-16">
           <SectionTitle>Áudio de Apresentação</SectionTitle>
           <Card>
@@ -180,14 +176,16 @@ export const Home: React.FC = () => {
                 preload="metadata"
                 className="w-full max-w-md"
               >
-                <source src="assets/intro.ogg" type="audio/ogg" />
+                <source
+                  src={getAssetPath("assets/intro.ogg")}
+                  type="audio/ogg"
+                />
                 Seu navegador não suporta a reprodução de áudio.
               </audio>
             </div>
           </Card>
         </section>
 
-        {/* Tech Stack */}
         <section>
           <SectionTitle>Tecnologias Utilizadas</SectionTitle>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

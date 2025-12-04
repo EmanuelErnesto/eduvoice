@@ -56,7 +56,6 @@ export const Team: React.FC = () => {
           ))}
         </div>
 
-        {/* Add Team Member Message */}
         <Card className="mt-16 text-center">
           <h2 className="text-2xl font-bold text-blue-400 mb-4">
             Faça Parte da Equipe
