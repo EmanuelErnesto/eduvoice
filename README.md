@@ -7,9 +7,8 @@
 - **Banco de Questões:** 30 questões sobre Sistemas Multimídia com explicações detalhadas, selecionadas aleatoriamente a cada quiz.
 - **Narrador por Voz (TTS):** Utiliza síntese de voz para ler perguntas e feedbacks com entonação natural.
 - **Motor de Áudio Híbrido:**
-  - **Procedural:** Trilhas "Zen", "Cosmos" e "Focus" geradas em tempo real via Web Audio API (Osciladores e LFOs).
-  - **YouTube Integration:** Toca músicas do YouTube em background (com tratamento robusto para erros de copyright/embed).
-  - **Upload Local:** Permite ao usuário carregar seus próprios arquivos de áudio (MP3/WAV) via Blob URLs.
+  - **Arquivos de Áudio:** Trilhas musicais pré-definidas (voz e violão, violão background, piano).
+  - **Upload Local:** Permite ao usuário carregar seus próprios arquivos de áudio (MP3/WAV/MIDI) via Blob URLs.
 - **Controles de Áudio Avançados:** Mixer independente para volume da música e da voz, com persistência de estado e lógica de não-interrupção (idempotência).
 - **Interface Reativa:** Design moderno e responsivo com Tailwind CSS, incluindo visualizadores de espectro de áudio.
 
@@ -18,8 +17,8 @@
 - **Frontend:** React 19, TypeScript.
 - **Estilização:** Tailwind CSS (via CDN).
 - **Áudio:**
-  - **Web Audio API:** Para síntese sonora procedural, manipulação de ganho e reprodução de arquivos locais (`MediaElementSource`).
-  - **YouTube IFrame API:** Para streaming de áudio externo.
+  - **Web Audio API:** Para síntese sonora, manipulação de ganho e reprodução de arquivos locais (`MediaElementSource`).
+  - **Web Speech API:** Para síntese de voz (Text-to-Speech).
 - **Build Tool:** Vite + TypeScript para desenvolvimento e build de produção.
 - **Testes:** Vitest + Testing Library para testes unitários e de integração.
 
@@ -42,7 +41,7 @@
 │   ├── ResultScreen.tsx    # Tela de pontuação final
 │   ├── Loader.tsx          # Componente de carregamento animado
 │   ├── Button.tsx          # Componente de botão reutilizável
-│   └── YouTubeAudio.tsx    # Player "headless" do YouTube com tratamento de erros
+│   └── MusicModal.tsx      # Modal de controle de música de fundo
 ├── services/               # Camada de Serviços (Lógica de Negócios)
 │   ├── audioService.ts     # Singleton para Web Audio API (Gerencia osciladores e arquivos locais)
 │   ├── storageService.ts   # Persistência de dados no LocalStorage
