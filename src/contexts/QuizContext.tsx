@@ -1,9 +1,8 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { Quiz, Difficulty } from '../types';
-import { generateQuizQuestions } from '../services/geminiService';
 import { storageService } from '../services/storageService';
-import { ERROR_CODES } from '../constants';
+import { QUESTIONS } from '../constants';
 
 interface QuizContextType {
   currentQuiz: Quiz | null;
@@ -17,6 +16,12 @@ interface QuizContextType {
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
+
+// Função para selecionar perguntas aleatórias
+const getRandomQuestions = (count: number) => {
+  const shuffled = [...QUESTIONS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
 
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
@@ -33,10 +38,13 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setGenerationError(null);
     
     try {
-      const questions = await generateQuizQuestions(topic, difficulty);
+      // Simula um pequeno delay para manter a experiência de "geração"
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      const questions = getRandomQuestions(5);
       const newQuiz: Quiz = {
         id: crypto.randomUUID(),
-        topic,
+        topic: "Sistemas Multimídia",
         difficulty,
         createdAt: Date.now(),
         questions
@@ -47,15 +55,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCurrentQuiz(newQuiz);
     } catch (error: any) {
       console.error(error);
-      const errorStrategies: Record<string, string> = {
-        [ERROR_CODES.IMPROPER_CONTENT]: "Tema identificado como impróprio ou inseguro. Por favor, escolha um tema educacional.",
-        [ERROR_CODES.CONTENT_BLOCKED]: "Tema identificado como impróprio ou inseguro. Por favor, escolha um tema educacional.",
-        [ERROR_CODES.INVALID_FORMAT]: "Não foi possível estruturar o quiz corretamente. Tente reformular o tema.",
-        DEFAULT: "Não foi possível gerar o quiz. Verifique sua conexão e tente novamente."
-      };
-
-      const msg = errorStrategies[error.message] || errorStrategies.DEFAULT;
-      setGenerationError(msg);
+      setGenerationError("Não foi possível gerar o quiz. Tente novamente.");
     } finally {
       setIsGenerating(false);
     }

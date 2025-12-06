@@ -212,6 +212,10 @@ class AudioService {
         console.log("[AudioService] Tocando violao-background");
         await this.playAudioFile("/assets/violao-background.mp3");
       },
+      "piano": async () => {
+        console.log("[AudioService] Tocando piano");
+        await this.playAudioFile("/assets/audiomidi.MIDI");
+      },
       default: async () => this.startAmbientMusic(),
     };
 
@@ -322,6 +326,7 @@ class AudioService {
       upload: () => true,
       "voz-violao": () => true,
       "violao-background": () => true,
+      "piano": () => true,
       default: () => false,
     };
 

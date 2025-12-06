@@ -21,6 +21,7 @@ export const MusicModal: React.FC<MusicModalProps> = ({ isOpen }) => {
   const musicOptions: Array<{ id: SoundTrack; label: string; icon: string }> = [
     { id: "voz-violao", label: "Voz e Violão", icon: "🎤" },
     { id: "violao-background", label: "Violão Background", icon: "🎸" },
+    { id: "piano", label: "Piano", icon: "🎹" },
     { id: "upload", label: "Upload", icon: "📁" },
   ];
 

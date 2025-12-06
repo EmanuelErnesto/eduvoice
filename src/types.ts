@@ -7,7 +7,7 @@ export const GameStatus = {
 
 export type GameStatus = (typeof GameStatus)[keyof typeof GameStatus];
 
-export type SoundTrack = "voz-violao" | "violao-background" | "upload";
+export type SoundTrack = "voz-violao" | "violao-background" | "piano" | "upload";
 
 export type Difficulty = "easy" | "medium" | "hard";
 

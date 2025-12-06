@@ -13,9 +13,7 @@ export const IntroScreen: React.FC = () => {
     generationError,
     history,
   } = useQuiz();
-  const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -26,11 +24,8 @@ export const IntroScreen: React.FC = () => {
     };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (topic.trim()) {
-      await generateQuiz(topic, difficulty);
-    }
+  const handleStartQuiz = async () => {
+    await generateQuiz("Sistemas Multimídia", difficulty);
   };
 
   const handleDelete = (e: React.MouseEvent, id: string) => {
@@ -59,38 +54,25 @@ export const IntroScreen: React.FC = () => {
           EduVoice
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-xs sm:max-w-lg mx-auto leading-relaxed">
-          Crie seu próprio quiz com IA e aprenda ouvindo.
+          Quiz interativo sobre Sistemas Multimídia com narração por voz.
         </p>
       </div>
 
       <div className="w-full max-w-lg space-y-4 sm:space-y-6 md:space-y-8 min-h-[400px]">
         {isGenerating ? (
           <div className="h-full flex items-center justify-center py-12 bg-slate-800/30 rounded-2xl border border-slate-700/50 backdrop-blur">
-            <Loader text="Gerando Questões..." />
+            <Loader text="Preparando Quiz..." />
           </div>
         ) : (
           <>
             <div className="bg-slate-800/50 backdrop-blur p-4 sm:p-5 md:p-6 rounded-2xl border border-slate-700 shadow-xl transition-all duration-300 hover:shadow-indigo-500/10">
-              <h2 className="text-white font-bold text-lg md:text-xl mb-3 md:mb-4">
-                Novo Tema
+              <h2 className="text-white font-bold text-lg md:text-xl mb-3 md:mb-4 text-center">
+                Sistemas Multimídia
               </h2>
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col space-y-3 md:space-y-4"
-              >
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={topic}
-                    onChange={(e) => setTopic(e.target.value)}
-                    placeholder="Ex: História do Brasil..."
-                    className={`w-full bg-slate-900/80 border ${
-                      generationError
-                        ? "border-red-500 focus:ring-red-500"
-                        : "border-slate-600 focus:ring-indigo-500"
-                    } rounded-lg px-4 py-3 text-sm md:text-base text-white placeholder-slate-500 focus:ring-2 focus:border-transparent outline-none transition-all`}
-                  />
-                </div>
+              <div className="flex flex-col space-y-3 md:space-y-4">
+                <p className="text-slate-400 text-sm text-center">
+                  Responda 5 perguntas aleatórias sobre multimídia
+                </p>
 
                 <div className="grid grid-cols-3 gap-2">
                   {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
@@ -134,13 +116,12 @@ export const IntroScreen: React.FC = () => {
                 )}
 
                 <Button
-                  type="submit"
-                  disabled={!topic.trim()}
+                  onClick={handleStartQuiz}
                   className="w-full flex justify-center items-center py-3 text-sm md:text-base"
                 >
-                  Criar Quiz
+                  Iniciar Quiz
                 </Button>
-              </form>
+              </div>
             </div>
 
             {history.length > 0 && (
