@@ -20,8 +20,8 @@ export const Home: React.FC = () => {
   const technologies = [
     { name: "React 19", desc: "Framework JavaScript moderno" },
     { name: "TypeScript", desc: "Tipagem estática" },
-    { name: "Google Gemini AI", desc: "IA Generativa" },
     { name: "Web Audio API", desc: "Áudio procedural" },
+    { name: "Web Speech API", desc: "Síntese de voz" },
     { name: "Vite", desc: "Build tool rápido" },
     { name: "Tailwind CSS", desc: "Estilização moderna" },
   ];
@@ -42,9 +42,9 @@ export const Home: React.FC = () => {
         </div>
 
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-6 sm:mb-8 max-w-3xl mx-auto text-center px-2">
-          Uma plataforma educacional imersiva que utiliza Inteligência
-          Artificial para criar quizzes dinâmicos sobre qualquer assunto,
-          narrados por voz neural sintética.
+          Uma plataforma educacional imersiva com banco de questões sobre
+          Sistemas Multimídia, oferecendo quizzes interativos narrados por voz
+          sintética.
         </p>
 
         <div className="flex justify-center mb-12 sm:mb-16">
@@ -102,12 +102,12 @@ export const Home: React.FC = () => {
                 </h3>
                 <ul className="text-slate-300 space-y-2 list-disc list-inside">
                   <li>
-                    <strong>Geração de Quizzes via IA:</strong> Cria perguntas,
-                    respostas e explicações detalhadas sobre qualquer tema
-                    usando Google Gemini
+                    <strong>Banco de Questões:</strong> 30 questões sobre
+                    Sistemas Multimídia com seleção aleatória de 5 perguntas
+                    por quiz
                   </li>
                   <li>
-                    <strong>Narrador Neural (TTS):</strong> Voz sintética
+                    <strong>Narrador por Voz (TTS):</strong> Voz sintética
                     natural para ler perguntas e feedbacks
                   </li>
                   <li>

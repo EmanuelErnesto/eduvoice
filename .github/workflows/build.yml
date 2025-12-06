@@ -48,8 +48,6 @@ jobs:
 
       - name: Build
         run: pnpm run build
-        env:
-          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
       - name: Add .nojekyll file
         run: touch dist/.nojekyll

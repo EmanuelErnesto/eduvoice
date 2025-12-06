@@ -1,11 +1,11 @@
 # EduVoice Interactive
 
-**EduVoice Interactive** é uma plataforma educacional imersiva que utiliza Inteligência Artificial Generativa (Google Gemini) para criar quizzes dinâmicos sobre qualquer assunto, narrados por uma voz neural sintética e acompanhados por trilhas sonoras adaptativas ou músicas escolhidas pelo usuário.
+**EduVoice Interactive** é uma plataforma educacional imersiva com banco de 30 questões sobre Sistemas Multimídia. Oferece quizzes interativos com seleção aleatória de perguntas, narrados por voz sintética e acompanhados por trilhas sonoras adaptativas ou músicas escolhidas pelo usuário.
 
 ## 🚀 Funcionalidades Principais
 
-- **Geração de Quizzes via IA:** Cria perguntas, respostas e explicações detalhadas sobre qualquer tema solicitado, com filtros de segurança.
-- **Narrador Neural (TTS):** Utiliza o modelo `gemini-2.5-flash-preview-tts` para ler perguntas e feedbacks com entonação natural.
+- **Banco de Questões:** 30 questões sobre Sistemas Multimídia com explicações detalhadas, selecionadas aleatoriamente a cada quiz.
+- **Narrador por Voz (TTS):** Utiliza síntese de voz para ler perguntas e feedbacks com entonação natural.
 - **Motor de Áudio Híbrido:**
   - **Procedural:** Trilhas "Zen", "Cosmos" e "Focus" geradas em tempo real via Web Audio API (Osciladores e LFOs).
   - **YouTube Integration:** Toca músicas do YouTube em background (com tratamento robusto para erros de copyright/embed).
@@ -17,7 +17,6 @@
 
 - **Frontend:** React 19, TypeScript.
 - **Estilização:** Tailwind CSS (via CDN).
-- **IA & Integração:** Google Generative AI SDK (`@google/generative-ai`).
 - **Áudio:**
   - **Web Audio API:** Para síntese sonora procedural, manipulação de ganho e reprodução de arquivos locais (`MediaElementSource`).
   - **YouTube IFrame API:** Para streaming de áudio externo.
@@ -46,9 +45,8 @@
 │   └── YouTubeAudio.tsx    # Player "headless" do YouTube com tratamento de erros
 ├── services/               # Camada de Serviços (Lógica de Negócios)
 │   ├── audioService.ts     # Singleton para Web Audio API (Gerencia osciladores e arquivos locais)
-│   ├── geminiService.ts    # Comunicação com Google Gemini (Geração de Quiz e TTS)
 │   ├── storageService.ts   # Persistência de dados no LocalStorage
-│   └── ttsService.ts       # Gerenciador de filas de Text-to-Speech
+│   └── ttsService.ts       # Gerenciador de síntese de voz (Text-to-Speech)
 └── hooks/
     └── useGameLogic.ts     # Hook personalizado (Custom Hook) para a máquina de estados do jogo
 ```
@@ -59,7 +57,6 @@
 
 - **Node.js** (versão 18 ou superior)
 - **npm** ou **yarn**
-- Uma **API Key do Google Gemini** (obtenha em [Google AI Studio](https://aistudio.google.com/app/apikey))
 - Navegador moderno com suporte a Web Audio API
 
 ### Instalação
@@ -74,29 +71,16 @@
 2.  **Instale as dependências:**
 
     ```bash
-    npm install
+    pnpm install
     ```
 
-3.  **Configure a API Key:**
-
-    Copie o arquivo `.env.example` para `.env`:
-
-    ```bash
-    cp .env.example .env
-    ```
-
-    Em seguida, edite o arquivo `.env` e adicione sua chave da API do Google Gemini:
-
-    ```
-    GEMINI_API_KEY=sua_chave_api_aqui
-    ```
 
 ### Executando o Projeto
 
 **Modo de Desenvolvimento:**
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 O aplicativo estará disponível em `http://localhost:3000`
@@ -104,40 +88,31 @@ O aplicativo estará disponível em `http://localhost:3000`
 **Build de Produção:**
 
 ```bash
-npm run build
+pnpm build
 ```
 
 **Preview do Build:**
 
 ```bash
-npm run preview
+pnpm preview
 ```
 
 **Executar Testes:**
 
 ```bash
-npm test
+pnpm test
 ```
 
 **Executar Testes com UI:**
 
 ```bash
-npm run test:ui
+pnpm run test:ui
 ```
-
-### Solução de Problemas
-
-
-**Erro: "API Key is missing"**
-
-- Verifique se o arquivo `.env` existe na raiz do projeto
-- Certifique-se de que a variável `GEMINI_API_KEY` está definida corretamente
-- Reinicie o servidor de desenvolvimento após criar/modificar o arquivo `.env`
 
 **Erro ao carregar dependências**
 
-- Remova a pasta `node_modules` e o arquivo `package-lock.json`
-- Execute `npm install` novamente
+- Remova a pasta `node_modules` e o arquivo `pnpm-lock.yaml`
+- Execute `pnpm install` novamente
 
 **Porta 3000 já em uso**
 
@@ -149,7 +124,6 @@ npm run test:ui
 - O projeto utiliza **Vite** como bundler para desenvolvimento rápido e build otimizado
 - As dependências são instaladas via **npm** e não mais carregadas via CDN
 - Testes podem ser executados com **Vitest** - uma alternativa moderna ao Jest
-- A API do Google Generative AI foi atualizada para usar o pacote oficial `@google/generative-ai`
 
 ## 🧠 Detalhes de Implementação de Áudio (`audioService.ts`)
 
@@ -164,8 +138,6 @@ O serviço de áudio implementa um padrão **Singleton** e utiliza o grafo de n�
 2.  **Idempotência:**
     Ao alterar o volume no slider, o serviço verifica (`currentBlobUrl` ou `currentTrack`) se a fonte de áudio já é a correta. Se for, ele apenas ajusta o ganho (`GainNode`) sem reiniciar a reprodução, garantindo uma experiência suave e contínua.
 
-3.  **Tratamento de Erros do YouTube:**
-    O componente detecta códigos de erro 150/153 (restrição de reprodução em sites externos) e sugere ao usuário buscar versões "Lyric Video", que geralmente possuem menos restrições de direitos autorais para embed.
 
 ---
 
